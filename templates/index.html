@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://hunter2labs.s3.amazonaws.com/common.css">
+    <script src='https://hunter2labs.s3.amazonaws.com/common.js'></script>
+  </head>
+  <body>
+    {% if current_user.is_authenticated %}
+      <h2> logged in as {{ current_user.username.decode('utf-8') }} </h2>
+      <a href="/logout">log out</a>
+    {% else %}
+      <h2>Log in</h2>
+      <form action="/login" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Log in</button>
+      </form>
+
+      <h2>Register</h2>
+      <form action="/register" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="confirm_password" placeholder="Confirm Password">
+        <button type="submit">Register</button>
+      </form>
+
+      {% if result %}
+        <h5> {{ result }} </h5>
+      {% endif %}
+
+    {% endif %}
+  </body>
+</html>
